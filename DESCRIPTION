@@ -1,11 +1,14 @@
-Package: aviltools
+Package: avil.tools
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Tools for Typical Data Tasks
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Author: Kevin Stout
+Maintainer: Kevin Stout <kevinrstout@gmail.com>
+  Description: Functions for census data downloading and creating simple statistics.
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
+RoxygenNote: 6.1.1
+Imports:
+  tidycensus (>= 0.9.2),
+  dplyr (>= 0.8.3)
