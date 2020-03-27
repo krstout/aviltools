@@ -15,8 +15,6 @@ census_table <- function(geographic.level, year, state, county) {
     p <- round(((x/y)*100), 2)
     return(p)
   }
-  ### Get Census Data at Tract Level ###
-  tidycensus::census_api_key("1f520699ad81bcd09c1dca9e91b02926e798a4da", overwrite = T, install = T)
 
   ### Race - Table B02001
   race <- tidycensus::get_acs(geography = geographic.level, table = "B02001",
