@@ -4,7 +4,7 @@ Title: Tools for Typical Data Tasks
 Version: 0.1.0
 Author: Kevin Stout
 Maintainer: Kevin Stout <kevinrstout@gmail.com>
-  Description: Functions for census data downloading and creating simple statistics.
+Description: Functions for census data downloading and creating simple statistics.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
