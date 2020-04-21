@@ -33,13 +33,13 @@ census_table <- function(geographic.level, year, state, county) {
                         nhpi      = B02001_006E,
                         other     = B02001_007E,
                         race2     = B02001_008E,
-                        per.white = per(white, race_all),
-                        per.black = per(black, race_all),
-                        per.aian  = per(aian, race_all),
-                        per.asian = per(asian, race_all),
-                        per.nhpi  = per(nhpi, race_all),
-                        per.other = per(other, race_all),
-                        per.race2 = per(race2, race_all))
+                        p.white = per(white, race_all),
+                        p.black = per(black, race_all),
+                        p.aian  = per(aian, race_all),
+                        p.asian = per(asian, race_all),
+                        p.nhpi  = per(nhpi, race_all),
+                        p.other = per(other, race_all),
+                        p.race2 = per(race2, race_all))
   race <- race[,c(23:39),]
 
   # Save race data to table
@@ -55,13 +55,13 @@ census_table <- function(geographic.level, year, state, county) {
   # Remove and rename variables
   age <- dplyr::mutate(age,
                        geoid          = GEOID,
-                       age_total_pop  = B01001_001E,
-                       age_over18     = B01001_001E - (B01001_003E + B01001_027E + B01001_004E + B01001_028E +
+                       age_total      = B01001_001E,
+                       age.over18     = B01001_001E - (B01001_003E + B01001_027E + B01001_004E + B01001_028E +
                                                          B01001_005E + B01001_029E + B01001_006E + B01001_030E),
-                       age_18to24     = B01001_007E + B01001_031E + B01001_008E + B01001_032E + B01001_009E +
+                       age.18to24     = B01001_007E + B01001_031E + B01001_008E + B01001_032E + B01001_009E +
                          B01001_033E + B01001_010E + B01001_034E,
-                       per.over18     = per(age_over18, age_total_pop),
-                       per.young      = per(age_18to24, age_total_pop))
+                       p.over18       = per(age.over18, age_total_pop),
+                       p.young        = per(age.18to24, age_total_pop))
   age <- age[,c(101:106)]
 
   final.census.data <- dplyr::left_join(final.census.data, age, by = "geoid")
@@ -72,11 +72,11 @@ census_table <- function(geographic.level, year, state, county) {
                               geometry = FALSE, output = "wide", cache_table = TRUE)
 
   hisp <- dplyr::mutate(hisp,
-                        geoid     = GEOID,
-                        total_his = B03003_001E,
-                        not_his   = B03003_002E,
-                        his       = B03003_003E,
-                        per.his   = per(his, total_his))
+                        geoid          = GEOID,
+                        total_hispanic = B03003_001E,
+                        not_hispanic   = B03003_002E,
+                        hispanic       = B03003_003E,
+                        p.hispanic     = per(hispanic, total_hispanic))
   hisp <- hisp[,c(9:13),]
 
   final.census.data <- dplyr::left_join(final.census.data, hisp, by = "geoid")
