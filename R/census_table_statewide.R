@@ -75,9 +75,23 @@ census_table_statewide <- function(geographic.level, year, state) {
                         total_hispanic = B03003_001E,
                         not_hispanic   = B03003_002E,
                         hispanic       = B03003_003E,
-                        p.hispanic     = per(hispanic, total_hispanic))
-  hisp <- hisp[,c(9, 10, 12, 13),]
+                        p.hispanic     = per(hispanic, not_hispanic))
+  hisp <- hisp[,c(9, 12, 13),]
 
   final.census.data <- dplyr::left_join(final.census.data, hisp, by = "geoid")
+
+  ### Median Income - Table B19013
+
+  medinc <- tidycensus::get_acs(geography = geographic.level, table = "B19013",
+                                year = year, state = state, county = county,
+                                geometry = FALSE, output = "wide", cache_table = TRUE)
+
+  medinc <- dplyr::mutate(medinc,
+                          geoid = GEOID,
+                          medinc = B19013_001E)
+  medinc <- medinc[,c(5, 6)]
+
+  final.census.data <- dplyr::left_join(final.census.data, medinc, by = "geoid")
+
   return(final.census.data)
 }
