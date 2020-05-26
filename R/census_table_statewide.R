@@ -83,7 +83,7 @@ census_table_statewide <- function(geographic.level, year, state) {
   ### Median Income - Table B19013
 
   medinc <- tidycensus::get_acs(geography = geographic.level, table = "B19013",
-                                year = year, state = state, county = county,
+                                year = year, state = state,
                                 geometry = FALSE, output = "wide", cache_table = TRUE)
 
   medinc <- dplyr::mutate(medinc,
