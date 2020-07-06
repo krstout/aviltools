@@ -22,3 +22,8 @@ d7 <- abs(outer(az$p.race2, az$p.race2, '-'))
 matrix.list <- list(d1, d2, d3, d4, d5, d6, d7)
 
 d8 <- Reduce('+', matrix.list)
+
+d8 <- as.data.frame(d8)
+d8$county <- az$name
+
+names(d8) <- az$name
