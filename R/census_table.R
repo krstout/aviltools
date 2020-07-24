@@ -76,7 +76,7 @@ census_table <- function(geographic.level, year, state, county) {
                         total_hispanic = B03003_001E,
                         not_hispanic   = B03003_002E,
                         hispanic       = B03003_003E,
-                        p.hispanic     = per(hispanic, not_hispanic))
+                        p.hispanic     = per(hispanic, total_hispanic))
   hisp <- hisp[,c(9, 12, 13),]
 
   final.census.data <- dplyr::left_join(final.census.data, hisp, by = "geoid")
