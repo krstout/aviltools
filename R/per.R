@@ -9,6 +9,6 @@
 #' per(15, 100)
 
 per <- function(x, y) {
-  p <- round(((x/y)*100), 2)
+  p <- ifelse(x == 0, 0, round(((x/y)*100), 2))
   return(p)
 }
